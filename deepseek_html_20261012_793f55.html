@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三角函数题目与详解</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(135deg, #e8f0ff 0%, #f7f9ff 45%, #eef7f2 100%);
+    min-height: 100vh;
+    padding: 36px 16px 60px;
+    color: #23304a;
+    line-height: 1.75;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.65rem;
+    letter-spacing: 2px;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: .9rem;
+    color: #7a8aa8;
+    margin-bottom: 32px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 26px 26px 22px;
+    margin-bottom: 26px;
+    box-shadow: 0 10px 30px rgba(60, 90, 160, .12);
+    border: 1px solid #e6edf9;
+    transition: box-shadow .3s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 14px 38px rgba(60, 90, 160, .18);
+  }
+
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4a7dff, #7a5cff);
+    color: #fff;
+    font-size: .82rem;
+    font-weight: 600;
+    padding: 3px 14px;
+    border-radius: 999px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .question {
+    font-size: 1.12rem;
+    color: #1c2942;
+    padding: 14px 16px;
+    background: #f4f8ff;
+    border-left: 4px solid #4a7dff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: .98rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    padding: 11px 34px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #4a7dff, #6f5bff);
+    box-shadow: 0 6px 16px rgba(74, 125, 255, .35);
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  }
+
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(74, 125, 255, .45); }
+  .btn:active { transform: translateY(0); }
+  .btn.open {
+    background: linear-gradient(135deg, #8a97b3, #a3aec4);
+    box-shadow: 0 6px 16px rgba(120, 135, 165, .3);
+  }
+
+  .answer {
+    display: none;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px dashed #d5e0f2;
+  }
+
+  .answer.show {
+    display: block;
+    animation: fadeIn .38s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .final {
+    display: inline-block;
+    background: #fff6e0;
+    border: 1px solid #f3d68a;
+    color: #9a6a00;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 1.08rem;
+    margin-bottom: 18px;
+  }
+
+  .step {
+    background: #fafcff;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border: 1px solid #eaf1fb;
+  }
+
+  .step h3 {
+    font-size: .98rem;
+    color: #2b58c4;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .step p { margin: 4px 0; color: #2c3a55; }
+
+  .eq {
+    font-family: "Cambria Math", Georgia, "Times New Roman", serif;
+    font-size: 1.06rem;
+    color: #16233d;
+    letter-spacing: .3px;
+  }
+
+  .highlight {
+    background: linear-gradient(transparent 62%, #cfe0ff 62%);
+    font-weight: 600;
+  }
+
+  .tip {
+    background: #f2fbf5;
+    border: 1px dashed #a8ddbd;
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #245c3c;
+  }
+
+  .tip h3 { color: #1f8a4c; font-size: .98rem; margin-bottom: 6px; }
+
+  .ok { color: #1f8a4c; font-weight: 700; }
+
+  footer {
+    text-align: center;
+    color: #98a6bf;
+    font-size: .82rem;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 20px 16px 18px; }
+    .question { font-size: 1rem; }
+    h1 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>三角函数解答</h1>
+  <p class="subtitle">点击按钮查看详细解析</p>
+
+  <!-- ================= 第一题 ================= -->
+  <div class="card">
+    <span class="badge">第 1 题</span>
+    <p class="question">
+      已知 α ∈ R，<span class="eq">sin α + 2cos α = (√10)/2</span>，则 <span class="eq">tan α =</span> ______。
+    </p>
+
+    <button class="btn" onclick="toggleAnswer(this, 'ans1')">显示答案</button>
+
+    <div class="answer" id="ans1">
+      <div class="final">答案：tan α = 3 或 tan α = −1/3</div>
+
+      <div class="step">
+        <h3>第一步：先说明 cos α ≠ 0</h3>
+        <p>若 cos α = 0，则 sin α = ±1，此时 sin α + 2cos α = ±1，</p>
+        <p>而 (√10)/2 ≈ 1.58 ≠ ±1，矛盾，所以 <span class="highlight">cos α ≠ 0</span>。</p>
+      </div>
+
+      <div class="step">
+        <h3>第二步：两边平方，化为齐次式</h3>
+        <p class="eq">(sin α + 2cos α)² = ( (√10)/2 )² = 5/2</p>
+        <p class="eq">sin²α + 4sin α cos α + 4cos²α = 5/2</p>
+        <p>两边同乘 2：</p>
+        <p class="eq">2sin²α + 8sin α cos α + 8cos²α = 5</p>
+        <p>把右边的 5 写成 5(sin²α + cos²α)：</p>
+        <p class="eq">2sin²α + 8sin α cos α + 8cos²α = 5sin²α + 5cos²α</p>
+        <p>移项整理得：</p>
+        <p class="eq">3sin²α − 8sin α cos α − 3cos²α = 0</p>
+      </div>
+
+      <div class="step">
+        <h3>第三步：同除 cos²α，解关于 tan α 的方程</h3>
+        <p>因为 cos α ≠ 0，两边同除以 cos²α：</p>
+        <p class="eq">3tan²α − 8tan α − 3 = 0</p>
+        <p>因式分解：</p>
+        <p class="eq">(3tan α + 1)(tan α − 3) = 0</p>
+        <p>所以 <span class="highlight">tan α = −1/3 或 tan α = 3</span>。</p>
+      </div>
+
+      <div class="step">
+        <h3>第四步：检验（平方可能产生增根）</h3>
+        <p>当 tan α = 3 时，取 sin α = 3/√10，cos α = 1/√10，
+           则 sin α + 2cos α = 5/√10 = (√10)/2 <span class="ok">✔</span></p>
+        <p>当 tan α = −1/3 时，取 sin α = −1/√10，cos α = 3/√10，
+           则 sin α + 2cos α = 5/√10 = (√10)/2 <span class="ok">✔</span></p>
+        <p>两个值都符合原式，故 tan α = 3 或 −1/3。</p>
+      </div>
+
+      <div class="tip">
+        <h3>另解：辅助角公式</h3>
+        <p class="eq">sin α + 2cos α = √5 · sin(α + φ)，其中 tan φ = 2。</p>
+        <p>由 √5 sin(α + φ) = (√10)/2，得</p>
+        <p class="eq">sin(α + φ) = (√2)/2，</p>
+        <p>所以 tan(α + φ) = ±1，即</p>
+        <p class="eq">(tan α + 2) / (1 − 2tan α) = ±1</p>
+        <p>分别解得 tan α = −1/3 与 tan α = 3，结论相同。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 第二题 ================= -->
+  <div class="card">
+    <span class="badge">第 2 题</span>
+    <p class="question">
+      已知 <span class="eq">(sin α + 3cos α) / (3cos α − sin α) = 5</span>，
+      则 <span class="eq">cos²α + (1/2)sin 2α =</span> ______。
+    </p>
+
+    <button class="btn" onclick="toggleAnswer(this, 'ans2')">显示答案</button>
+
+    <div class="answer" id="ans2">
+      <div class="final">答案：3/5</div>
+
+      <div class="step">
+        <h3>第一步：由已知条件求出 tan α</h3>
+        <p>去分母（分母 3cos α − sin α ≠ 0）：</p>
+        <p class="eq">sin α + 3cos α = 5(3cos α − sin α)</p>
+        <p class="eq">sin α + 3cos α = 15cos α − 5sin α</p>
+        <p class="eq">6sin α = 12cos α</p>
+        <p class="eq">sin α = 2cos α</p>
+        <p>说明：若 cos α = 0，则 sin α = ±1，左边 = sin α / (−sin α) = −1 ≠ 5，矛盾，
+           所以 <span class="highlight">cos α ≠ 0</span>，两边可同除 cos α，得</p>
+        <p class="eq"><span class="highlight">tan α = 2</span></p>
+      </div>
+
+      <div class="step">
+        <h3>第二步：化简所求式子</h3>
+        <p>由二倍角公式 sin 2α = 2sin α cos α，得 (1/2)sin 2α = sin α cos α，于是</p>
+        <p class="eq">cos²α + (1/2)sin 2α = cos²α + sin α cos α</p>
+        <p>提取 cos²α：</p>
+        <p class="eq">= cos²α (1 + tan α)</p>
+      </div>
+
+      <div class="step">
+        <h3>第三步：由 tan α 求 cos²α</h3>
+        <p>利用 1 + tan²α = 1 / cos²α：</p>
+        <p class="eq">cos²α = 1 / (1 + tan²α) = 1 / (1 + 2²) = 1/5</p>
+      </div>
+
+      <div class="step">
+        <h3>第四步：代入求值</h3>
+        <p class="eq">原式 = (1/5) × (1 + 2) = 3/5</p>
+        <p>所以 <span class="highlight">cos²α + (1/2)sin 2α = 3/5</span>。</p>
+      </div>
+
+      <div class="tip">
+        <h3>小结</h3>
+        <p>“已知 sin α 与 cos α 的一次齐次式（或分式）的值，求 tan α”是常见套路：
+           把条件化为 sin α = k·cos α 即可得 tan α；求值时把式子统一化成含 tan α 与 cos²α 的形式，
+           再用 cos²α = 1/(1 + tan²α) 计算。</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 三角函数题目详解 · 点击按钮可反复展开与收起</footer>
+</div>
+
+<script>
+  function toggleAnswer(btn, id) {
+    var box = document.getElementById(id);
+    var opened = box.classList.toggle('show');
+    btn.textContent = opened ? '隐藏答案' : '显示答案';
+    btn.classList.toggle('open', opened);
+  }
+</script>
+
+</body>
+</html>
